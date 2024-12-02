@@ -1,77 +1,66 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutorial Requests</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Firebase Hosting</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
+    <!-- stylesheets -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
 
-<body>
-  <h1>Firebase App</h1>
-  <!-- new request modal -->
-  <div class="new-request">
-    <div class="modal">
-      <h2>Request a Tutorial</h2>
-      <form>
-        <input type="text" name="request" placeholder="Request...">
-        <button>Submit Request</button>
-        <p class="error"></p>
-      </form>
+    <!-- new request modal -->
+    <div class="new-request">
+      <div class="modal">
+        <h2>Request a Tutorial</h2>
+        <form>
+          <input type="text" name="request" placeholder="Request...">
+          <button>Submit Request</button>
+          <p class="error"></p>
+        </form>
+      </div>
     </div>
-  </div>
+    
+    <header>
+      <nav>
+        <a class="add-request">add request</a>
+        <a class="sign-out">sign out</a>
+      </nav>
+    </header>
 
-  <header>
-    <nav>
-      <a class="add-request">add request</a>
-      <a class="sign-out">sign out</a>
-    </nav>
-  </header>
+    <section class="content">
+      <h1>Tutorial Requests</h1>
+      <ul class="request-list"> 
+        <li>
+          <span class="text">Laravel 6 tutorial</span>
+          <div>
+            <span class="votes">125</span>
+            <i class="material-icons upvote">arrow_upward</i>
+          </div>
+        </li>
+      </ul>
+      <button class="call">Say hello</button>
+    </section>
+    <script defer src="/__/firebase/11.0.2/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/11.0.2/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/11.0.2/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/11.0.2/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/11.0.2/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/11.0.2/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/11.0.2/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/11.0.2/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/11.0.2/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/11.0.2/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script src="js/app.js"></script>
 
-  <section class="content">
-    <h1>Tutorial Requests</h1>
-    <ul class="request-list">
-      <li>
-        <span class="text">Laravel 6 tutorial</span>
-        <div>
-          <span class="votes">125</span>
-          <i class="material-icons upvote">arrow_upward</i>
-        </div>
-      </li>
-    </ul>
-  </section>
-  <button id="btn-hello">Say Hello</button>
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { functions } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-functions.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
 
-    import { } from 'firebase/functions';
-    import { } from 'firebase/auth';
-    import { } from 'firebase/firestore';
-
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyBt7g2P8Hse9yz6PG3DJIZBl42j-gc-0IU",
-      authDomain: "tuto-requests.firebaseapp.com",
-      projectId: "tuto-requests",
-      storageBucket: "tuto-requests.firebasestorage.app",
-      messagingSenderId: "125833378093",
-      appId: "1:125833378093:web:78d50f89474ea2e335fba4"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
-  <script type="module" src="js/app.js"></script>
-
-</body>
-
+  </body>
 </html>
