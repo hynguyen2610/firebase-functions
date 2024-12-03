@@ -43,7 +43,7 @@ loginForm.addEventListener('submit', (e) => {
       loginForm.reset();
     })
     .catch(error => {
-      loginForm.querySelector('.error').textContent = error.message;
+      loginForm.querySelector('.error').textContent = JSON.parse(error.message).error.message;
     });
 });
 
