@@ -20,8 +20,11 @@ exports.toTheDojo = onRequest((request, response) => {
 
 exports.newUserSignUp = functions.auth.user().onCreate(user => {
     console.log('user signed up: ', user.email, user.uid);
+    return admin.firestore().collection('users').doc(user.uid).set({ email: user.email });
 });
 
 exports.userDeleted = functions.auth.user().onDelete(user => {
     console.log('user deleted: ', user.email, user.uid);
+    const userDelete = admin.firestore().collection('users').doc(user.uid);
+    return userDelete.delete();
 });
