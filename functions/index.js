@@ -1,7 +1,7 @@
 // Import function triggers from their respective submodules
-const {onRequest, onCall} = require("firebase-functions/v2/https");
+const { onRequest } = require("firebase-functions/v2/https");
 const admin = require('firebase-admin');
-const { response } = require("express");
+const functions = require("firebase-functions/v1");
 
 // Initialize Firebase Admin SDK
 admin.initializeApp();
@@ -18,6 +18,10 @@ exports.toTheDojo = onRequest((request, response) => {
     response.redirect('https://thenetninja.co.uk');
 });
 
-exports.sayHello = onCall((data, context) => {
-    return `Hello`;
+exports.newUserSignUp = functions.auth.user().onCreate(user => {
+    console.log('user signed up: ', user.email, user.uid);
+});
+
+exports.userDeleted = functions.auth.user().onDelete(user => {
+    console.log('user deleted: ', user.email, user.uid);
 });
