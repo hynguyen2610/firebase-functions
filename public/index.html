@@ -54,8 +54,9 @@
       </nav>
     </header>
 
-    <section class="content">
+    <section class="content" id="app">
       <h1>Requests</h1>
+      <p>{{ message }}</p>
       <ul class="request-list"> 
         <li>
           <span class="text">Laravel 6 tutorial</span>
@@ -67,6 +68,8 @@
       </ul>
       <button class="call">Say hello</button>
     </section>
+    <!-- vue js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="/__/firebase/7.7.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script src="/__/firebase/7.7.0/firebase-auth.js"></script>

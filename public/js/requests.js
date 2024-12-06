@@ -1,5 +1,12 @@
 const ref = firebase.firestore().collection('requests');
 
+const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello!'
+    }
+  });
+
 ref.onSnapshot(snapshot => {
     // console.log(snapshot);
 
