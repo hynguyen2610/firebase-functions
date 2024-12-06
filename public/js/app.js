@@ -2,7 +2,7 @@ const requestModal = document.querySelector('.new-request');
 const requestLink = document.querySelector('.add-request');
 const requestForm = document.querySelector('.new-request form');
 const btnHello = document.querySelector('.call');
-const buttonUpvotes = document.querySelector('.upvote');
+const notification = document.querySelector('.notification');
 
 // open request modal
 requestLink.addEventListener('click', () => {
@@ -44,7 +44,7 @@ document.addEventListener('click', (e) => {
         }).then(() => {
             console.log('upvote');
         }).catch(error => {
-            console.log(error);
+            showNotification(error.message);
         });
     }
 });
@@ -61,3 +61,13 @@ btnHello.addEventListener('click', () => {
             console.log(error);
         });
 });
+
+// show notification on error
+const showNotification = (message) => {
+    notification.textContent = message;
+    notification.classList.add('active');
+    setTimeout(() => {
+        notification.classList.remove('active');
+        notification.textContent = '';
+    }, 4000);
+}
