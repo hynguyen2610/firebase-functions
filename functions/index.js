@@ -41,6 +41,13 @@ exports.addRequest = functions.https.onCall(async (data, context) => {
 
 });
 
+exports.upvoteRequest = functions.https.onCall(async (data, context) => {
+    const requestRef = admin.firestore().collection('requests').doc(data.id);
+    const request = await requestRef.get();
+    const upvotes = request.data().upvotes;
+    await requestRef.update({ upvotes: upvotes + 1 });
+});
+
 exports.hello = functions.https.onCall((data, context) => {
     return 'Hello from Firebase!';
-  });
+});

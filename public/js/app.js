@@ -2,6 +2,7 @@ const requestModal = document.querySelector('.new-request');
 const requestLink = document.querySelector('.add-request');
 const requestForm = document.querySelector('.new-request form');
 const btnHello = document.querySelector('.call');
+const buttonUpvotes = document.querySelector('.upvote');
 
 // open request modal
 requestLink.addEventListener('click', () => {
@@ -31,6 +32,22 @@ requestForm.addEventListener('submit', (e) => {
         .catch(error => {
             requestForm.querySelector('.error').textContent = error.message;
         });
+});
+
+// when click on upvote button, increase the number of upvotes
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('upvote')) {
+        const id = e.target.parentNode.parentNode.id;
+        console.log("id is: " + id);
+        const upvote = firebase.functions().httpsCallable('upvoteRequest');
+        upvote({
+            id: id
+        }).then(() => {
+            console.log('upvote');
+        }).catch(error => {
+            console.log(error);
+        });
+    }
 });
 
 btnHello.addEventListener('click', () => {

@@ -57,7 +57,7 @@
     <section class="content" id="app">
       <h1>Requests</h1>
       <ul id = "request-list" class="request-list"> 
-        <li v-for="request in requests">
+        <li v-for="request in requests" :id="request.id">
           <span class="text">{{ request.text }}</span>
           <div>
             <span class="votes">{{ request.upvotes }}</span>
