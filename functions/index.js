@@ -20,7 +20,6 @@ exports.newUserSignUp = functions.auth.user().onCreate(user => {
 });
 
 exports.userDeleted = functions.auth.user().onDelete(user => {
-    console.log('user deleted: ', user.email, user.uid);
     const userDelete = admin.firestore().collection('users').doc(user.uid);
     return userDelete.delete();
 });
@@ -41,11 +40,32 @@ exports.addRequest = functions.https.onCall(async (data, context) => {
 
 });
 
-exports.upvoteRequest = functions.https.onCall(async (data, context) => {
+exports.upvote = functions.https.onCall(async (data, context) => {
     const requestRef = admin.firestore().collection('requests').doc(data.id);
     const request = await requestRef.get();
-    const upvotes = request.data().upvotes;
-    await requestRef.update({ upvotes: upvotes + 1 });
+
+    // only logged in user can vote
+    if (!context.auth) {
+        throw new functions.https.HttpsError('unauthenticated', 'Only authenticated users can vote');
+    }
+
+    // make sure this user has not already upvoted this ticket
+    const userRef = admin.firestore().collection('users').doc(context.auth.uid);
+    const user = await userRef.get();
+
+    const upvoters = user.data().upvotes || [];
+    if (upvoters.includes(data.id)) {
+        throw new functions.https.HttpsError('already-exists', 'You have already upvoted this request');
+    }
+
+    // update request upvotes
+    const newUpvotes = await requestRef.update({ upvotes: request.data().upvotes + 1 });
+
+    // update the user upvotes
+    await userRef.update({ upvotes: admin.firestore.FieldValue.arrayUnion(data.id) });
+
+    return newUpvotes;
+
 });
 
 exports.hello = functions.https.onCall((data, context) => {

@@ -38,8 +38,7 @@ requestForm.addEventListener('submit', (e) => {
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('upvote')) {
         const id = e.target.parentNode.parentNode.id;
-        console.log("id is: " + id);
-        const upvote = firebase.functions().httpsCallable('upvoteRequest');
+        const upvote = firebase.functions().httpsCallable('upvote');
         upvote({
             id: id
         }).then(() => {
