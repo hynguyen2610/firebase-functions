@@ -5,7 +5,7 @@ console.log('Initializing Firebase Admin SDK...');
 
 const randomNumberFunction = require('./randomNumber');
 const toTheDojoFunction = require('./toTheDojo');
-const newUserSignUpFunction = require('./newUserSignup');
+const userRegisterFunction = require('./userRegister');
 const userDeletedFunction = require('./userDeleted');
 const addRequestFunction = require('./addRequest');
 const upvoteFunction = require('./upvote');
@@ -17,7 +17,7 @@ console.log('Loading functions...');
 try {
   exports.randomNumber = randomNumberFunction.randomNumber;
   exports.toTheDojo = toTheDojoFunction.toTheDojo;
-  exports.newUserSignUp = newUserSignUpFunction.newUserSignUp;
+  exports.userRegister = userRegisterFunction.userRegister;
   exports.userDeleted = userDeletedFunction.userDeleted;
   exports.addRequest = addRequestFunction.addRequest;
   exports.upvote = upvoteFunction.upvote;
